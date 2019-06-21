@@ -11,13 +11,13 @@ import Foundation
 func gauges(myPlane : Aviatrix) {
     print("Reading the gauges...")
     print(" ")
- //   print("| Running:  | ✅")
+    print("| Running:  | ✅")
     print("| Location: | \(myPlane.location)")
-//    print("| Distance:  | \(myPlane.distanceTraveled) miles")
-//    print("| Fuel:      | \(myPlane.fuelLevel) gallons")
-//    print("| Max Fuel:  | \(myPlane.maxFuel) gallons")
-//    print("| MPG:       | \(myPlane.milesPerGallon)")
-//    print("| Fuel Bill: | \(myPlane.fuelCost)")
+    print("| Distance: | \(myPlane.distanceTravelled) miles")
+    print("| Fuel Left:| \(myPlane.fuelRemaining) gallons")
+    print("| Max Fuel: | \(myPlane.maxFuel) gallons")
+    print("| MPG:      | \(myPlane.milesPerGallon)")
+    print("| Fuel Bill:| \(myPlane.fuelCost)")
 }
 
 func fly(myPlane : Aviatrix) {
@@ -52,26 +52,25 @@ func fly(myPlane : Aviatrix) {
 }
 
 func refuel(myPlane : Aviatrix) {
-//    let refuelData = myPlane.refuel()
-//
-//    print("Refueling...")
-//    print("⛽ Here in \(myPlane.location), jet fuel costs _________")
-//    print("⛽ You refueled _________ gallons totaling _________")
+    let refuelData = myPlane.refuel()
+
+    print("Refueling...")
+    print("⛽ Here in \(myPlane.location), jet fuel costs  \(myPlane.data.fuelPrices[myPlane.location]!)")
+    print("⛽ You refueled \(myPlane.refAmt) gallons totaling \(refuelData)")
 }
 
 func fuelCheck(myPlane : Aviatrix, destination : String) -> Bool {
-    //let distanceToTravel =  Double(myPlane.distanceTo(target : destination))
-//    if myPlane.fuelLevel < distanceToTravel {
-//        print(" ")
-//        print("🔥 🔥 🔥 🔥 🔥 🔥 🔥 🔥 🔥 🔥")
-//        print("Oh no! You've run out of fuel and crashed on the way to \(myPlane.location)!")
-//        print("🔥 🔥 🔥 🔥 🔥 🔥 🔥 🔥 🔥 🔥")
+    let distanceToTravel =  Double(myPlane.distanceTo(target : destination))
+    if myPlane.fuelRemaining < distanceToTravel / myPlane.milesPerGallon {
+        print(" ")
+        print("🔥 🔥 🔥 🔥 🔥 🔥 🔥 🔥 🔥 🔥")
+        print("Oh no! You've run out of fuel and crashed on the way to \(destination)!")
+        print("🔥 🔥 🔥 🔥 🔥 🔥 🔥 🔥 🔥 🔥")
 
-//        return false
-//    } else {
-//        return true
-//    }
-    return true
+        return false
+    } else {
+        return true
+    }
 }
 
 var plane = Aviatrix( authorName : "Isabella Kulstad", locName : "St. Louis")
